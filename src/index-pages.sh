@@ -15,7 +15,7 @@ insert_pages() {
 	while [ -n "$1" ]; do
 		unset PAGE_NAME
 		unset PAGE_TYPE
-		PAGE_NAME="$(get_title "$1")"
+		PAGE_NAME="$(get_title "$1" | sed 's/ (automake)//g')"
 		PAGE_TYPE="Guide"
 		if [ -n "$PAGE_NAME" ]; then
 			insert "$DB_PATH" "$PAGE_NAME" "$PAGE_TYPE" "$(basename "$1")"
