@@ -11,9 +11,9 @@ $(DOCUMENTS_DIR): $(RESOURCES_DIR) $(MANUAL_FILE)
 	mkdir -p $@
 	tar -x -z -f $(MANUAL_FILE) -C $@
 
-$(INDEX_FILE): $(SOURCE_DIR)/src/index-pages.sh $(SCRIPTS_DIR)/gnu/index-terms-class.sh $(DOCUMENTS_DIR)
+$(INDEX_FILE): $(SOURCE_DIR)/src/index-pages.py $(SCRIPTS_DIR)/gnu/index-terms.py $(DOCUMENTS_DIR)
 	rm -f $@
-	$(SOURCE_DIR)/src/index-pages.sh $@ $(DOCUMENTS_DIR)/*.html
-	$(SCRIPTS_DIR)/gnu/index-terms-class.sh "Macro"    $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/Macro-Index.html
-	$(SCRIPTS_DIR)/gnu/index-terms-class.sh "Variable" $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/Variable-Index.html
-	$(SCRIPTS_DIR)/gnu/index-terms-class.sh "Entry"    $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/General-Index.html
+	$(SOURCE_DIR)/src/index-pages.py $@ $(DOCUMENTS_DIR)/*.html
+	$(SCRIPTS_DIR)/gnu/index-terms.py "Macro"    $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/Macro-Index.html
+	$(SCRIPTS_DIR)/gnu/index-terms.py "Variable" $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/Variable-Index.html
+	$(SCRIPTS_DIR)/gnu/index-terms.py "Entry"    $(INDEX_ENTRY_CLASS) $@ $(DOCUMENTS_DIR)/General-Index.html
